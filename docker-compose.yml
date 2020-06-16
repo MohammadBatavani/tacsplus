@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  tacacs:
+    image: ehlers/tacacs
+    stdin_open: true
+    tty: true
+    volumes: 
+      - type: bind
+        source: /etc/tacacs+/tac_plus.conf
+        target: /etc/tacacs+/tac_plus.conf
+      - type: bind
+        source: /etc/tacacs+/passwd
+        target: /etc/tacacs+/passwd       
+      - type: bind
+        source: /var/log/tac_plus.acct
+        target: /var/log/tac_plus.acct 
+    ports:
+      - "49:49"
+    restart: always
